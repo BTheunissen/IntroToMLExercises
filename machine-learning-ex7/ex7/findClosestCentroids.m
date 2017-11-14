@@ -21,11 +21,17 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
-
-
-
-
+for i = 1:length(X)
+  closestDist = intmax();
+  for k = 1:K
+    newDist = sum(abs(X(i, :) - centroids(k, :)) .^ 2);
+    if (newDist < closestDist)
+      closestCentroid = k;
+      closestDist = newDist;
+    endif
+  endfor
+  idx(i) = closestCentroid;
+endfor
 
 % =============================================================
 
